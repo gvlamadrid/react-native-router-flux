@@ -178,16 +178,20 @@ export default class DefaultRenderer extends PureComponent {
     while ({}.hasOwnProperty.call(selected, 'children')) {
       selected = selected.children[selected.index];
     }
-    if (child !== selected) {
-      // console.log(`SKIPPING renderHeader because ${child.key} !== ${selected.key}`);
-      return null;
+    
+    const showCustomNavBar = deepestExplicitValueForKey(state, 'showCustomNavBar');
+    if (!showCustomNavBar) {
+      if (child !== selected) {
+        // console.log(`SKIPPING renderHeader because ${child.key} !== ${selected.key}`);
+        return null;
+      }
+      const hideNavBar = deepestExplicitValueForKey(state, 'hideNavBar');
+      if (hideNavBar) {
+        // console.log(`SKIPPING renderHeader because ${child.key} hideNavBar === true`);
+        return null;
+      }
     }
-    const hideNavBar = deepestExplicitValueForKey(state, 'hideNavBar');
-    if (hideNavBar) {
-      // console.log(`SKIPPING renderHeader because ${child.key} hideNavBar === true`);
-      return null;
-    }
-
+    
     // console.log(`renderHeader for ${child.key}`);
 
     if (selected.component && selected.component.renderNavigationBar) {
