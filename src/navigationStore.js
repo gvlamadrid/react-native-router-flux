@@ -896,16 +896,16 @@ class NavigationStore {
     this.dispatch({ type: NavigationActions.NAVIGATE, routeName, params });
   };
 
-  drawerOpen = () => {
-    this.dispatch(DrawerActions.openDrawer());
+  drawerOpen = (params) => {
+    this.dispatch(DrawerActions.openDrawer(params));
   };
 
-  drawerClose = () => {
-    this.dispatch(DrawerActions.closeDrawer());
+  drawerClose = (params) => {
+    this.dispatch(DrawerActions.closeDrawer(params));
   };
 
-  drawerToggle = () => {
-    this.dispatch(DrawerActions.toggleDrawer());
+  drawerToggle = (params) => {
+    this.dispatch(DrawerActions.toggleDrawer(params));
   };
 
   refresh = (data, sceneKey = null) => {
